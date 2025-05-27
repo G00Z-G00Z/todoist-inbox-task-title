@@ -2,8 +2,10 @@
 # /// script
 # requires-python = ">=3.11"
 # dependencies = [
+#     "dotenv>=0.9.9",
 #     "httpx",
 #     "pydantic",
+#     "todoist-api-python>=3.1.0",
 # ]
 # ///
 

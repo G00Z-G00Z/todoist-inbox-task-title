@@ -47,23 +47,29 @@ def task_to_str(task: Task) -> str:
     Returns:
         str
     """
-    return f"{task.content}: {task.description}"
+
+    text = task.content
+
+    if task.description:
+        text += f": {task.description}"
+
+    return text
 
 
 def main() -> None:
-
     api = setup_api()
-
-    print(api)
 
     tasks = api.filter_tasks(query=r"#Inbox")
 
     text = ""
 
     for task_list in tasks:
-        for task in task_list:
-            print(task_to_str(task))
-            break
+        # Put all the text of the tasks into a text fie
+        text += "\n".join([task_to_str(task) for task in task_list])
+
+    clip.copy(text)
+    print(text, end="\n\n")
+    print("The text was copied to your clipboard")
 
 
 if __name__ == "__main__":
